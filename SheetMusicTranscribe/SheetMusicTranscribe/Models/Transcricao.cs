@@ -8,7 +8,7 @@ namespace SheetMusicTranscribe.Models
     public class Transcricao
     {
         public int Id { get; set; }
-
+        
         public Musica musica { get; set; }
 
         public Artista artista { get; set; }

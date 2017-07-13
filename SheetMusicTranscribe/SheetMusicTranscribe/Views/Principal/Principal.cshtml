@@ -1,2 +1,102 @@
 ﻿<h1>Transcrições cadastradas</h1>
 
+<div class="container">
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalNorm">Incluir</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome da música</th>
+                <th>Artista</th>
+                <th>Revista</th>
+                <th>Publicação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    
+                    var nomeMusica = item.musica != null ? item.musica.Nome : "";
+                    var nomeArtista = item.artista != null ? item.artista.Nome : "";
+                    var nomeRevista = item.revista != null ? item.revista.Nome : "";
+                    var publicacao = item.revista != null ? item.revista.DataPublicacao.ToString("MM/yyyy") : "";
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@nomeMusica</td>
+                        <td>@nomeArtista</td>
+                        <td>@nomeRevista</td>
+                        <td>@publicacao</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Transcrição
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="InputNomeArtista">Nome do artista</label>
+                        <input type="text" class="form-control"
+                               id="InputNomArtista" placeholder="Digite o nome do artista" />
+                    </div>
+                    <div class="form-group">
+                        <label for="InputNomeAlbum">Nome do álbum</label>
+                        <input type="text" class="form-control"
+                               id="InputNomeAlbum" placeholder="Digite o nome do álbum" />
+                    </div>
+                    <div class="form-group">
+                        <label for="InputNomeMusica">Nome da música</label>
+                        <input type="text" class="form-control"
+                               id="InputNomeMusica" placeholder="Digite o nome da música" />
+                    </div>
+                    <div class="form-group">
+                        <label for="InputNomeRevista">Nome da revista</label>
+                        <input type="text" class="form-control"
+                               id="InputNomeRevista" placeholder="Digite o nome da revista" />
+                    </div>
+                    <div class="form-group">
+                        <label for="InputDataPublicacao">Data da publicação</label>
+                        <input type="month" class="form-control"
+                               id="InputDataPublicacao"
+                               placeholder="Digite a data da publicação" />
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary">
+                    Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Adicionar um JS para recuperar os dados do form Modal e depois enviar esses dados para a persistência-->

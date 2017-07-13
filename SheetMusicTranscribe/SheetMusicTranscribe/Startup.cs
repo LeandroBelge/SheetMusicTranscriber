@@ -30,12 +30,13 @@ namespace SheetMusicTranscribe
         {
             // Add framework services.
             services.AddMvc();
-            string StringConexao = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = SheetMusicTranscribe;";
-            services.AddDbContext<Contexto>(options => options.UseSqlServer(StringConexao));
+            string caminho = Configuration.GetSection("StringConexao").GetValue<string>("Default");
+            services.AddDbContext<Contexto>(options => options.UseSqlServer(caminho));
+            services.AddTransient<IDataService, DataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -58,6 +59,10 @@ namespace SheetMusicTranscribe
                     name: "default",
                     template: "{controller=Principal}/{action=Principal}/{id?}");
             });
+
+            IDataService dataService = serviceProvider.GetService<IDataService>();
+
+  dataService.InicializaDB();
         }
     }
 }
