@@ -1,0 +1,29 @@
+Transcrição
+* ID
+* Música
+* Artista
+* Álbum
+* Revista
+
+Artista
+* ID
+* Nome
+* Lista álbuns
+
+Álbum
+* ID
+* Nome
+* Artista
+* Lista de músicas
+
+Revista
+* ID
+* Nome
+* Edição
+* Data publicação (mm/yyyy)
+
+Música
+* ID
+* Nome
+* Album
+* Artista

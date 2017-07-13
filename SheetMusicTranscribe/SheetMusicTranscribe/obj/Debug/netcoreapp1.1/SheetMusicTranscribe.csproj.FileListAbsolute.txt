@@ -1,0 +1,9 @@
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\bin\Debug\netcoreapp1.1\SheetMusicTranscribe.deps.json
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\bin\Debug\netcoreapp1.1\SheetMusicTranscribe.runtimeconfig.json
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\bin\Debug\netcoreapp1.1\SheetMusicTranscribe.runtimeconfig.dev.json
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\bin\Debug\netcoreapp1.1\SheetMusicTranscribe.dll
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\obj\Debug\netcoreapp1.1\SheetMusicTranscribe.csprojResolveAssemblyReference.cache
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\obj\Debug\netcoreapp1.1\SheetMusicTranscribe.AssemblyInfo.cs
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\bin\Debug\netcoreapp1.1\SheetMusicTranscribe.pdb
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\obj\Debug\netcoreapp1.1\SheetMusicTranscribe.dll
+D:\Leandro\Projetos\Sheet Music Transcribe\SheetMusicTranscribe\SheetMusicTranscribe\obj\Debug\netcoreapp1.1\SheetMusicTranscribe.pdb
