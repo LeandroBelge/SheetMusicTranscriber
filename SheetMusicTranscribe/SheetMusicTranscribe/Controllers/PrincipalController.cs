@@ -22,5 +22,15 @@ namespace SheetMusicTranscribe.Controllers
             List<Transcricao> transcricoes = this._dataService.GetTranscricoes();
             return View(transcricoes);
         }
+
+        [HttpPost]
+        public void PostTranscricao(Transcricao transcricao)
+        {
+            //Persistir Artista
+            //Persistir Album
+            //Persistir Musica
+            //Persistir Revista
+            //Persistir transcricao
+        }
     }
 }
