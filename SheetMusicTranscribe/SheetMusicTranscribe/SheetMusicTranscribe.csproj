@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\js\Cadastro.js" />
+    <Compile Remove="Migrations\20170713142802_Iniciando_BD.cs" />
+    <Compile Remove="Migrations\20170713142802_Iniciando_BD.Designer.cs" />
+    <Compile Remove="Migrations\20170713192937_Revista.cs" />
+    <Compile Remove="Migrations\20170713192937_Revista.Designer.cs" />
+    <Compile Remove="Migrations\ContextoModelSnapshot.cs" />
+    <Compile Remove="Models\Album.cs" />
+    <Compile Remove="Models\Artista.cs" />
+    <Compile Remove="Models\Musica.cs" />
+    <Compile Remove="Models\Revista.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -24,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -62,7 +62,7 @@ namespace SheetMusicTranscribe
 
             IDataService dataService = serviceProvider.GetService<IDataService>();
 
-  dataService.InicializaDB();
+            dataService.InicializaDB();
         }
     }
 }

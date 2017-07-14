@@ -20,22 +20,5 @@ namespace SheetMusicTranscribe
         {
             this._contexto.Database.EnsureCreated();
         }
-
-        public List<Transcricao> GetTranscricoes()
-        {
-            var query = from t in _contexto.Transcricoes
-                        .Include(m => m.musica)
-                        .Include(a => a.artista)
-                        .Include(r => r.revista)
-                        orderby t.musica.Nome 
-                        select t;
-            List<Transcricao> lista = new List<Transcricao>();
-            foreach (var item in query)
-            {
-                lista.Add(item);
-            }
-
-            return lista;
-        }
     }
 }
