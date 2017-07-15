@@ -19,7 +19,19 @@ namespace SheetMusicTranscribe.Controllers
         // GET: /<controller>/
         public IActionResult Principal()
         {
-            return View();
+            List<Transcricao> Transcricoes = this._dataService.getTranscricoes();
+            return View(Transcricoes);
+        }
+
+        [HttpPost]
+        public void Persistir([FromBody] Transcricao transcricao)
+        {
+            _dataService.Persistir(transcricao);
+        }
+        [HttpPost]
+        public void Excluir([FromBody] int IdTranscricao)
+        {
+            _dataService.Excluir(IdTranscricao);
         }
     }
 }

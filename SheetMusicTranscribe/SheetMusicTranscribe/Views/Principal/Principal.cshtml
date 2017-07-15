@@ -15,23 +15,27 @@
             </tr>
         </thead>
         <tbody>
-            @*@{
+            @{
                 foreach (var item in Model)
                 {
                     
-                    var nomeMusica = item.musica != null ? item.musica.Nome : "";
-                    var nomeArtista = item.artista != null ? item.artista.Nome : "";
-                    var nomeRevista = item.revista != null ? item.revista.Nome : "";
-                    var publicacao = item.revista != null ? item.revista.DataPublicacao.ToString("MM/yyyy") : "";
-                    <tr>
+                    var nomeMusica = item.NomeMusica != null ? item.NomeMusica : "";
+                    var nomeArtista = item.NomeArtista != null ? item.NomeArtista : "";
+                    var nomeRevista = item.NomeRevista != null ? item.NomeRevista : "";
+                    var publicacao = item.DataPublicacao != null ? item.DataPublicacao.ToString("MM/yyyy") : "";
+                    <tr item-id="@item.Id">
                         <td>@item.Id</td>
                         <td>@nomeMusica</td>
                         <td>@nomeArtista</td>
                         <td>@nomeRevista</td>
                         <td>@publicacao</td>
+                        <td>
+                            <button type="button" class="btn btn-default">Alterar</button>
+                            <button type="button" class="btn btn-default" onclick="Excluir(this)">Excluir</button>
+                        </td>
                     </tr>
                 }
-            }*@
+            }
         </tbody>
     </table>
 </div>
@@ -59,24 +63,16 @@
                     <div class="form-group">
                         <label for="InputNomeArtista">Nome do artista</label>
                         <input type="text" class="form-control"
-                               id="InputNomArtista" placeholder="Digite o nome do artista" />
-                    </div>
-                    <div class="form-group">
+                               id="InputNomeArtista" placeholder="Digite o nome do artista" />
                         <label for="InputNomeAlbum">Nome do álbum</label>
                         <input type="text" class="form-control"
                                id="InputNomeAlbum" placeholder="Digite o nome do álbum" />
-                    </div>
-                    <div class="form-group">
                         <label for="InputNomeMusica">Nome da música</label>
                         <input type="text" class="form-control"
                                id="InputNomeMusica" placeholder="Digite o nome da música" />
-                    </div>
-                    <div class="form-group">
                         <label for="InputNomeRevista">Nome da revista</label>
                         <input type="text" class="form-control"
                                id="InputNomeRevista" placeholder="Digite o nome da revista" />
-                    </div>
-                    <div class="form-group">
                         <label for="InputDataPublicacao">Data da publicação</label>
                         <input type="month" class="form-control"
                                id="InputDataPublicacao"
@@ -91,10 +87,48 @@
                         data-dismiss="modal">
                     Cancelar
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" onclick="salvar()">
                     Salvar
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        function salvar() {
+            var data = {
+                NomeAlbum: $('#InputNomeAlbum').val(),
+                NomeMusica: $('#InputNomeMusica').val(),
+                NomeArtista: $('#InputNomeArtista').val(),
+                NomeRevista: $('#InputNomeRevista').val(),
+                DataPublicacao: $('#InputDataPublicacao').val()
+            };
+
+            $.ajax({
+                url: '/principal/Persistir',//Acessa o controler e o método referente.
+                type: 'POST',//Indica o método http utilizado
+                contentType: 'application/json',
+                data: JSON.stringify(data),//Monta o JSON com o objeto data criado acima.
+                //headers: header//Informa o valor do token na chamada ajax.
+            }).done(function (response) {//Recupera a resposta do servidor
+                window.location.reload()
+                })
+        };
+        function Excluir(elemento) {
+            var itemSelecionado = $(elemento).parents('[item-id]')
+            var itemId = itemSelecionado.attr('item-id');
+
+            $.ajax({
+                url: '/principal/Excluir',//Acessa o controler e o método referente.
+                type: 'POST',//Indica o método http utilizado
+                contentType: 'application/json',
+                data: JSON.stringify(itemId),//Monta o JSON com o objeto data criado acima.
+                //headers: header//Informa o valor do token na chamada ajax.
+            }).done(function (response) {//Recupera a resposta do servidor
+                window.location.reload()
+            })
+        }
+    </script>
+}
