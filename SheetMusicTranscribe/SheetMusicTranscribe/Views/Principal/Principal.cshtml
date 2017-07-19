@@ -18,7 +18,7 @@
             @{
                 foreach (var item in Model)
                 {
-                    
+
                     var nomeMusica = item.NomeMusica != null ? item.NomeMusica : "";
                     var nomeArtista = item.NomeArtista != null ? item.NomeArtista : "";
                     var nomeRevista = item.NomeRevista != null ? item.NomeRevista : "";
@@ -30,7 +30,7 @@
                         <td>@nomeRevista</td>
                         <td>@publicacao</td>
                         <td>
-                            <button type="button" class="btn btn-default">Alterar</button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalEdit" onclick="Alterar(this)">Alterar</button>
                             <button type="button" class="btn btn-default" onclick="Excluir(this)">Excluir</button>
                         </td>
                     </tr>
@@ -95,6 +95,62 @@
     </div>
 </div>
 
+<!-- Modal Edit-->
+<div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Editar transcrição 
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="InputNomeArtista">Nome do artista</label>
+                        <input type="text" class="form-control"
+                               id="InputNomeArtista" value=" " />
+                        <label for="InputNomeAlbum">Nome do álbum</label>
+                        <input type="text" class="form-control"
+                               id="InputNomeAlbum" placeholder="Digite o nome do álbum" />
+                        <label for="InputNomeMusica">Nome da música</label>
+                        <input type="text" class="form-control"
+                               id="InputNomeMusica" placeholder="Digite o nome da música" />
+                        <label for="InputNomeRevista">Nome da revista</label>
+                        <input type="text" class="form-control"
+                               id="InputNomeRevista" placeholder="Digite o nome da revista" />
+                        <label for="InputDataPublicacao">Data da publicação</label>
+                        <input type="month" class="form-control"
+                               id="InputDataPublicacao"
+                               placeholder="Digite a data da publicação" />
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" onclick="salvar()">
+                    Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section Scripts{
     <script>
         function salvar() {
@@ -117,7 +173,7 @@
                 })
         };
         function Excluir(elemento) {
-            var itemSelecionado = $(elemento).parents('[item-id]')
+            var itemSelecionado = $(elemento).parents('[item-id]');
             var itemId = itemSelecionado.attr('item-id');
 
             $.ajax({
@@ -125,9 +181,21 @@
                 type: 'POST',//Indica o método http utilizado
                 contentType: 'application/json',
                 data: JSON.stringify(itemId),//Monta o JSON com o objeto data criado acima.
-                //headers: header//Informa o valor do token na chamada ajax.
             }).done(function (response) {//Recupera a resposta do servidor
                 window.location.reload()
+            })
+        }
+        function Alterar(elemento) {
+            var itemSelecionado = $(elemento).parents('[item-id]');
+            var itemId = itemSelecionado.attr('item-id');
+            var Model = {
+                NomeArtista: "ArtistaTeste"
+            }
+
+            $.ajax({
+                url: '#myModalEdit',
+                contentType: 'application/json',
+                data: JSON.stringify(Model),//Monta o JSON com o objeto data criado acima.
             })
         }
     </script>
